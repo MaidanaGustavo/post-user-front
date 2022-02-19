@@ -1,0 +1,32 @@
+<div>
+
+  <div class="post" id="post" [style.display]="displayPost">
+
+    <span>{{post.title}}</span>
+
+    <p>
+      {{post.description}}
+    </p>
+
+    <div class="buttons">
+
+      <div>
+        <img src="../../assets/icons/edit.png" alt="">
+        <span (click)="updatePost()" >Editar</span>
+      </div>
+
+      <div>
+        <img src="../../assets/icons/delete.png" alt="">
+        <span (click)="deletePost()">Excluir</span>
+      </div>
+
+    </div>
+</div >
+
+
+<div *ngIf="editar">
+  <app-post-edit id="postEdit" [updateBtn]="true" [post]=post> </app-post-edit>
+</div>
+
+
+</div>

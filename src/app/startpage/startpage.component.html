@@ -1,0 +1,40 @@
+<body>
+  <div class="containerPrincipal">
+    <div class="leftSide">
+      <div (click)="addPost()" class="addButton">
+
+        <img src="../../assets/icons/add.png" alt="">
+        <span > Adicionar post</span>
+
+      </div>
+
+
+      <div class="settingButton">
+
+        <img src="../../assets/icons/settings.png" alt="">
+        <span (click)="reload()"> Configurações </span>
+
+      </div>
+    </div>
+
+    <div class="centerSide">
+
+      <app-post-edit [style.display]="displayAdd" [saveBtn]=true [idUser]=id></app-post-edit>
+
+      <div  *ngFor="let pos  of posts">
+        <app-post [post] =pos></app-post>
+      </div>
+    </div>
+
+    <div class="rigthSide">
+
+      <div class="miniNav">
+        <img src="../../assets/icons/user.png" alt="User">
+        <span>Matagal</span>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>

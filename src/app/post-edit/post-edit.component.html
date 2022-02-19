@@ -1,0 +1,8 @@
+<div class="box-edit" id="box-edit">
+  <input placeholder="Titulo"  required  type="text" id="title"  name="title"  [(ngModel)] = "title">
+  <textarea placeholder="Descrição" required cols="40" rows="5" id="description" name="description" [(ngModel)] = "description"></textarea>
+  <div class="save">
+    <button *ngIf="updateBtn" (click)="update()">Salvar</button>
+    <button *ngIf="saveBtn" (click)="save()">Salvar</button>
+  </div>
+</div>
