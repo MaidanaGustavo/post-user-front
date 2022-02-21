@@ -1,28 +1,4 @@
-@mixin buttonLeftSide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap : 10px;
-  background: #000;
-  width: 250px;
-  height: 45px;
-  color: #fff;
-  padding: 10px 5px;
-
-  &:hover{
-    background: #262626;
-    transition: all ease 350ms;
-  }
-
-  border-radius: 4px;
-  cursor: pointer;
-
-  img{
-    width: 24px;
-    height: 24px;
-  }
-}
-
+@import '../../../styles.scss';
 
 body{
   padding: 35px;
@@ -34,12 +10,16 @@ body{
 
     .leftSide{
       width: 100%;
+      .leftContainer{
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap : 25px;
+
       .addButton, .settingButton{
         @include buttonLeftSide;
 
+      }
       }
     }
     .centerSide{
@@ -49,8 +29,6 @@ body{
       justify-content: center;
       gap:  15px;
       width: 100%;
-
-
     }
 
     .rigthSide{
@@ -76,6 +54,7 @@ body{
 
     }
   }
+
 
 }
 

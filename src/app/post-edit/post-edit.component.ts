@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PostComponent } from '../post/post.component';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Post, PostRequestDTO } from '../post/post.models';
 import { PostService } from '../post/post.service';
-import { StartpageComponent } from '../startpage/startpage.component';
 
 @Component({
   selector: 'app-post-edit',
@@ -24,7 +22,12 @@ export class PostEditComponent implements OnInit {
   saveBtn: Boolean = false;
   @Input()
   updateBtn: Boolean = false;
-  constructor(private postService : PostService,private postComponent : PostComponent,private startPage : StartpageComponent) { }
+
+  @Output()
+  retorno = new EventEmitter();
+
+
+  constructor(private postService : PostService) { }
 
   ngOnInit(): void {
   }
@@ -34,8 +37,8 @@ export class PostEditComponent implements OnInit {
    let postUpdate : PostRequestDTO = new PostRequestDTO();
    postUpdate.description = this.description;
    postUpdate.title = this.title;
-   this.postService.updatePost(this.post.id,postUpdate).subscribe(res=>{
-      this.postComponent.returnUpdatePost();
+   this.postService.updatePost(this.post.id,postUpdate,'').subscribe(res=>{
+    this.retorno.emit({msg:'ok'});
    })
    this.title = '';
    this.description = '';
@@ -47,13 +50,15 @@ export class PostEditComponent implements OnInit {
     newPost.title = this.title;
     newPost.idUser = this.idUser;
 
-    this.postService.savePost(newPost).subscribe(res=>{
-      this.startPage.reload();
+    this.postService.savePost(newPost,'').subscribe(res=>{
+      console.log(this.idUser)
+      console.log(res)
+      this.retorno.emit({msg:'ok'});
     })
 
     this.idUser = 0;
     this.title = '';
-   this.description = '';
+    this.description = '';
   }
 
 }

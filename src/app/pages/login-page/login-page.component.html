@@ -1,0 +1,35 @@
+<div class="hero">
+
+  <div class="container">
+
+    <div class="containerBox">
+
+      <div id="criarConta" class="criarConta">
+        <div class="infocc">
+          <h2>Ainda não tem uma conta?</h2>
+          <h3>Clique no botão abaixo para ter acesso a melhor rede social do centro-oeste !</h3>
+          <button (click)="cadastrar()">Criar Conta</button>
+        </div>
+
+      </div>
+        <div id="box" class="box">
+          <app-login-form  (resp)="redireciona($event)" id="loginForm"></app-login-form>
+          <app-register-form id="registerForm" style="display: none;"></app-register-form>
+        </div>
+      <div id="loginConta" class="loginConta">
+
+        <div id="infolc" class="infolc">
+          <h2>Já possui uma conta?</h2>
+          <h3>Clique no botão abaixo para fazer login</h3>
+          <button (click)="login()">Fazer login</button>
+        </div>
+
+        <!--  -->
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+

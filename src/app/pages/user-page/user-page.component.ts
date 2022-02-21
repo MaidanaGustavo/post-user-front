@@ -1,16 +1,15 @@
-import { ChangeDetectorRef, Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Post } from '../post/post.models';
-import { PostService } from '../post/post.service';
-import { UserService } from '../user/user.service';
+import { Post } from 'src/app/post/post.models';
+import { PostService } from 'src/app/post/post.service';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
-  selector: 'app-startpage',
-  templateUrl: './startpage.component.html',
-  styleUrls: ['./startpage.component.scss']
+  selector: 'app-user-page',
+  templateUrl: './user-page.component.html',
+  styleUrls: ['./user-page.component.scss']
 })
-@Injectable()
-export class StartpageComponent implements OnInit {
+export class UserPageComponent implements OnInit {
 
   constructor(private postService : PostService,private activatedRoute: ActivatedRoute,
     private userService : UserService) { }
@@ -18,13 +17,18 @@ export class StartpageComponent implements OnInit {
   posts : Post[] = [];
   displayAdd : String = 'none';
   id : Number = 0;
+  nameUser : String = '';
+
   ngOnInit(): void {
     const nickname = this.activatedRoute.snapshot.params['nickname'];
-
-    this.userService.listarUsuariosPeloNickName(nickname).subscribe(res=>{
+    const token = localStorage.getItem('token');
+    console.log(token)
+    this.userService.listarUsuariosPeloNickName(nickname,`${token}`).subscribe(res=>{
       this.id = res.response[0].id;
-      this.postService.listarPostsByUser(res.response[0].id).subscribe(res=>{
-        console.log(res);
+      this.nameUser = res.response[0].name;
+
+      this.postService.listarPostsByUser(res.response[0].id,`${token}`).subscribe(res=>{
+
         for (let index = 0; index < res.response.length; index++) {
           let pos : Post  =res.response[index] ;
            this.posts.push(pos);
@@ -48,6 +52,10 @@ export class StartpageComponent implements OnInit {
   reload(){
     this.ngOnDestroy();
     this.ngOnInit();
+  }
+
+  recebeRetorno(resposta: any){
+    this.reload()
   }
 
 }

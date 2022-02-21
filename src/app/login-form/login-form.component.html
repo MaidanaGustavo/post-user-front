@@ -1,0 +1,16 @@
+<div class="formContainer">
+  <h1>Login :</h1>
+  <form action="#">
+    <input type="text" placeholder="Nome de usuário"  [(ngModel)] = "nickname"  name="nickname"required>
+    <input type="password" placeholder="Senha"  [(ngModel)] = "password" name="password" required>
+    <div class="submit">
+      <button (click)="login()">
+        Entrar
+      </button>
+
+      <a href="#">
+        <span>Esqueceu a senha ?</span>
+      </a>
+    </div>
+  </form>
+</div>

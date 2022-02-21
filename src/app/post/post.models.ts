@@ -3,6 +3,8 @@ export interface IPost{
   title: String;
   description : String;
   idUser: Number;
+  createdAt : Date;
+  isEdited : Number;
 }
 
 export class Post implements IPost{
@@ -10,6 +12,8 @@ export class Post implements IPost{
   title!: String;
   description!: String;
   idUser!: Number;
+  isEdited!: Number;
+  createdAt!: Date;
 }
 
 

@@ -5,3 +5,29 @@
   font-family: 'Nunito', sans-serif;
   box-sizing: border-box;
 }
+
+
+
+@mixin buttonLeftSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap : 10px;
+  background: #000;
+  width: 250px;
+  height: 45px;
+  color: #fff;
+  padding: 10px 5px;
+  &:hover{
+    background: #262626;
+    transition: all ease 350ms;
+  }
+
+  border-radius: 4px;
+  cursor: pointer;
+
+  img{
+    width: 24px;
+    height: 24px;
+  }
+}

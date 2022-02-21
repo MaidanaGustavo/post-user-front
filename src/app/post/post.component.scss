@@ -25,6 +25,23 @@
     font-weight: bold;
 
   }
+
+  .informacoes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+     .postTime{
+       font-size: 9pt;
+      font-style: italic;
+     }
+
+     .edited{
+        font-size: 9pt;
+        color: #363636	;
+     }
+
+  }
   .buttons{
     display: flex;
     flex-direction: row;

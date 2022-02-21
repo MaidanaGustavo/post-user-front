@@ -1,0 +1,93 @@
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+  }
+}
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+  }
+}
+
+
+
+.hero{
+    background: url('../../../assets/background/initialpagebg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+  z-index: 99999;
+}
+.containerBox{
+  width: 65vw;
+  height: 35vh;
+  background: #39393A;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 2px;
+  -webkit-box-shadow: 3px 2px 15px 5px rgba(0,0,0,0.32);
+  box-shadow: 3px 2px 15px 5px rgba(0,0,0,0.32);
+  padding: 15px 15px;
+
+  .box{
+    transition: transform 1s ease-in-out;
+  }
+
+  .criarConta,.loginConta{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .loginConta{
+    display: none;
+  }
+
+  .infolc,.infocc{
+    color: #fff;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    button{
+      width: 100px;
+      height: 35px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: #3fa6d9;
+      color: #fff;
+
+      &:hover{
+        transition: all ease 1s;
+        background: #00091b;
+      }
+    }
+  }
+
+
+}

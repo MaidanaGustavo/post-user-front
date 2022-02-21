@@ -8,6 +8,12 @@
       {{post.description}}
     </p>
 
+    <div class="informacoes">
+      <span class="postTime"> Postado em : {{post.createdAt | date:'dd/mm/yyy hh:mm'}} AM</span>
+      <span class="edited" *ngIf="post.isEdited===1">(Editado)</span>
+    </div>
+
+
     <div class="buttons">
 
       <div>
@@ -21,11 +27,12 @@
       </div>
 
     </div>
+
 </div >
 
 
 <div *ngIf="editar">
-  <app-post-edit id="postEdit" [updateBtn]="true" [post]=post> </app-post-edit>
+  <app-post-edit id="postEdit" [updateBtn]="true" [post]=post (retorno)="returnUpdatePost($event)"> </app-post-edit>
 </div>
 
 

@@ -1,6 +1,8 @@
 <body>
   <div class="containerPrincipal">
     <div class="leftSide">
+      <div class="leftContainer">
+
       <div (click)="addPost()" class="addButton">
 
         <img src="../../assets/icons/add.png" alt="">
@@ -15,14 +17,16 @@
         <span (click)="reload()"> Configurações </span>
 
       </div>
+
+    </div>
     </div>
 
     <div class="centerSide">
 
-      <app-post-edit [style.display]="displayAdd" [saveBtn]=true [idUser]=id></app-post-edit>
+      <app-post-edit [style.display]="displayAdd" [saveBtn]=true [idUser]=id (retorno)="recebeRetorno($event)"></app-post-edit>
 
       <div  *ngFor="let pos  of posts">
-        <app-post [post] =pos></app-post>
+        <app-post [post]=pos (resposta)="recebeRetorno($event)"></app-post>
       </div>
     </div>
 
@@ -30,11 +34,10 @@
 
       <div class="miniNav">
         <img src="../../assets/icons/user.png" alt="User">
-        <span>Matagal</span>
+        <span>{{nameUser}}</span>
       </div>
 
     </div>
   </div>
-
 
 </body>

@@ -1,5 +1,4 @@
-import { Component, Injectable, Input, OnInit } from '@angular/core';
-import { StartpageComponent } from '../startpage/startpage.component';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { Post } from './post.models';
 import { PostService } from './post.service';
 
@@ -13,11 +12,13 @@ export class PostComponent implements OnInit {
 
   @Input()
   post : Post = new Post();
+  @Output()
+  resposta = new EventEmitter();
 
   editar : Boolean = false;
   displayPost : String = '';
 
-  constructor(private postService:PostService, private startPage : StartpageComponent) {
+  constructor(private postService:PostService) {
 
    }
 
@@ -26,7 +27,7 @@ export class PostComponent implements OnInit {
   }
 
   deletePost(){
-    this.postService.deletePost(this.post.id).subscribe(res=> this.startPage.reload());
+    this.postService.deletePost(this.post.id,'').subscribe(res=> this.resposta.emit({msg: 'Ok'}));
 
   }
 
@@ -35,14 +36,13 @@ export class PostComponent implements OnInit {
      document.getElementsByClassName('post');
      this.editar = true;
      this.displayPost = 'none';
-
   }
 
 
-  returnUpdatePost(){
+  returnUpdatePost(retorno:any){
     this.editar = false;
     document.getElementById('post')!.style.display = 'flex';
-    this.startPage.reload();
+    this.resposta.emit({msg: 'Ok'})
 
   }
 }
