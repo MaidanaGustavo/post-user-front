@@ -25,7 +25,7 @@ export class LoginFormComponent implements OnInit {
     this.userService.login(this.nickname,this.password).subscribe(res=>{
       console.log(res);
      localStorage.setItem('token',`${res.response[0].token}`);
-     this.resp.emit({msg:'ok'});
+     this.resp.emit({msg:'ok',username:res.response[0].username});
     })
 
   }

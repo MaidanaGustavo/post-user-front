@@ -13,7 +13,7 @@ export class LoginPageComponent implements OnInit {
   }
   redireciona(resposta:any){
     if(resposta.msg=='ok'){
-      this.route.navigate(['/matagal'])
+      this.route.navigate([`${resposta.username}`])
     }
   }
 

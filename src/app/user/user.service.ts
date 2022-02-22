@@ -8,9 +8,16 @@ export class UserService{
 
   constructor(private http : HttpClient) {}
 
-  // listarTodosOsPost() {
-  //   return  this.http.get<ResponseModel>(`${this.apiBase}/posts`).pipe();
-  // }
+  listarTodosOsPost(token:String) {
+    const obj = {
+      'Content-Type': 'application/json',
+      'bearer' : `${token}`
+    }
+    const httpOptions = {
+      headers: new HttpHeaders(obj),
+    };
+    return  this.http.get<ResponseModelUserNick>(`${this.apiBase}/posts`,httpOptions).pipe();
+  }
   login(nickname: String, password:String){
     return this.http.post<ResponseModelUserLogin>(`${this.apiBase}/users/login`,{
       nickname,
@@ -22,15 +29,11 @@ export class UserService{
       'Content-Type': 'application/json',
       'bearer' : `${token}`
     }
-    let headers = new HttpHeaders(obj);
     const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'bearer' : `${token}`
-      })
+      headers: new HttpHeaders(obj),
     };
 
-    return this.http.get<ResponseModelUserNick>(`${this.apiBase}/users/findbynickname/${nickname}`,{headers}).pipe();
+    return this.http.get<ResponseModelUserNick>(`${this.apiBase}/users/findbynickname/${nickname}`,httpOptions).pipe();
   }
 }
 
@@ -49,6 +52,7 @@ class ResponseModelUserLogin{
 
 class Token{
   token!: String;
+  username!: String;
 }
 
 class UserNickName{

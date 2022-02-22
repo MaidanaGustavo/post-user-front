@@ -27,7 +27,8 @@ export class PostComponent implements OnInit {
   }
 
   deletePost(){
-    this.postService.deletePost(this.post.id,'').subscribe(res=> this.resposta.emit({msg: 'Ok'}));
+    const token = localStorage.getItem('token');
+    this.postService.deletePost(this.post.id,`${token}`).subscribe(res=> this.resposta.emit({msg: 'Ok'}));
 
   }
 

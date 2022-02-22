@@ -37,7 +37,8 @@ export class PostEditComponent implements OnInit {
    let postUpdate : PostRequestDTO = new PostRequestDTO();
    postUpdate.description = this.description;
    postUpdate.title = this.title;
-   this.postService.updatePost(this.post.id,postUpdate,'').subscribe(res=>{
+   const token = localStorage.getItem('token');
+   this.postService.updatePost(this.post.id,postUpdate,`${token}`).subscribe(res=>{
     this.retorno.emit({msg:'ok'});
    })
    this.title = '';
@@ -49,8 +50,8 @@ export class PostEditComponent implements OnInit {
     newPost.description = this.description;
     newPost.title = this.title;
     newPost.idUser = this.idUser;
-
-    this.postService.savePost(newPost,'').subscribe(res=>{
+    const token = localStorage.getItem('token');
+    this.postService.savePost(newPost,`${token}`).subscribe(res=>{
       console.log(this.idUser)
       console.log(res)
       this.retorno.emit({msg:'ok'});

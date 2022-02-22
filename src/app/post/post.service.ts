@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Post, PostRequestDTO } from "./post.models";
 import {environment} from '../../environments/environment';
@@ -10,43 +10,59 @@ export class PostService{
   constructor(private http : HttpClient) {}
 
   listarTodosOsPost(token:String) {
-    let headers = new Headers();
-    headers.set('Content-Type','application/json');
-    headers.set('bearer',`${token}`);
-    return  this.http.get<ResponseModelPost>(`${this.apiBase}/posts`).pipe();
+    const obj = {
+      'Content-Type': 'application/json',
+      'bearer' : `${token}`
+    }
+    const httpOptions = {
+      headers: new HttpHeaders(obj),
+    };
+    return  this.http.get<ResponseModelPost>(`${this.apiBase}/posts`,httpOptions).pipe();
   }
 
   deletePost(id:Number,token:String){
-    let headers = new Headers();
-    headers.set('Content-Type','application/json');
-    headers.set('bearer',`${token}`);
-
-    return  this.http.delete<ResponseModelPost>(`${this.apiBase}/posts/${id}/`).pipe();
+    const obj = {
+      'Content-Type': 'application/json',
+      'bearer' : `${token}`
+    }
+    const httpOptions = {
+      headers: new HttpHeaders(obj),
+    };
+    return  this.http.delete<ResponseModelPost>(`${this.apiBase}/posts/${id}/`,httpOptions).pipe();
   }
 
   updatePost(id:Number,postUpdate:PostRequestDTO ,token:String ){
-    let headers = new Headers();
-    headers.set('Content-Type','application/json');
-    headers.set('bearer',`${token}`);
-
-    return this.http.put<ResponseModelPost>(`${this.apiBase}/posts/${id}/`,postUpdate).pipe()
+    const obj = {
+      'Content-Type': 'application/json',
+      'bearer' : `${token}`
+    }
+    const httpOptions = {
+      headers: new HttpHeaders(obj),
+    };
+    return this.http.put<ResponseModelPost>(`${this.apiBase}/posts/${id}/`,postUpdate,httpOptions).pipe()
   }
 
   savePost(post:PostRequestDTO ,token:String){
-    let headers = new Headers();
-    headers.set('Content-Type','application/json');
-    headers.set('bearer',`${token}`);
+    const obj = {
+      'Content-Type': 'application/json',
+      'bearer' : `${token}`
+    }
+    const httpOptions = {
+      headers: new HttpHeaders(obj),
+    };
 
-    return this.http.post<ResponseModelPost>(`${this.apiBase}/posts`,post).pipe()
+    return this.http.post<ResponseModelPost>(`${this.apiBase}/posts`,post,httpOptions).pipe()
   }
 
   listarPostsByUser(id:Number,token:String){
-    let headers = new Headers();
-    headers.set('Content-Type','application/json');
-    headers.set('bearer',`${token}`);
-    return this.http.get<ResponseModelPost>(`${this.apiBase}/posts/user/${id}`,{headers:{
-      bearer : `${token}`
-    }}).pipe()
+    const obj = {
+      'Content-Type': 'application/json',
+      'bearer' : `${token}`
+    }
+    const httpOptions = {
+      headers: new HttpHeaders(obj),
+    };
+    return this.http.get<ResponseModelPost>(`${this.apiBase}/posts/user/${id}`,httpOptions).pipe()
   }
 }
 
