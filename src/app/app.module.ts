@@ -6,7 +6,7 @@ import { PostComponent } from './post/post.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PostService } from './post/post.service';
 import { PostEditComponent } from './post-edit/post-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserComponent } from './user/user.component';
@@ -16,6 +16,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { ValidacaoNicknameDisponivelComponent } from './validacoes-form/validacao-nickname-disponivel/validacao-nickname-disponivel.component';
+import { ValidacaoNicknameIndisponivelComponent } from './validacoes-form/validacao-nickname-indisponivel/validacao-nickname-indisponivel.component';
 
 
 
@@ -30,6 +32,9 @@ import { AuthGuardService } from './guards/auth-guard.service';
     LoginPageComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    ValidacaoNicknameDisponivelComponent,
+    ValidacaoNicknameIndisponivelComponent,
+    
 
   ],
   imports: [
@@ -37,6 +42,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
 
   ],
   providers: [PostService,UserService,AuthGuardService],

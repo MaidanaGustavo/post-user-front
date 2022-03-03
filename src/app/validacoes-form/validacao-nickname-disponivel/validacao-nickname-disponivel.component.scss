@@ -1,0 +1,18 @@
+.principal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    margin-left: 20px;
+    span {
+        font-size: 14px;
+        padding: 5px;
+        color: #7AE10F;
+    }
+
+    img {
+        width: 24px;
+    }
+}
+
+

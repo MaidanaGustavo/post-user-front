@@ -1,14 +1,52 @@
 <div class="formContainer">
   <h1>Cadastre-se :</h1>
-  <form action="#">
-    <input type="text" placeholder="Nome Completo">
-    <input type="text" placeholder="Email">
-    <input type="text" placeholder="Nome de usuário" required>
-    <input type="password" placeholder="Senha" required>
-    <input type="password" placeholder="Digite novamente a senha" required>
+  <form [formGroup]="cadastroForm" action="#">
+    
+    <!-- nome completo -->
+    <div class="input-nickname">
+      <input formControlName="nome" type="text" name="nome" placeholder="Nome Completo">
+      <ng-container *ngFor="let erro of mensagens.nome">
+        <span class="msg-erro validacao" *ngIf="cadastroForm.get('nome')?.hasError(erro.tipo) && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome')?.touched)">
+          <img src="assets/icons/ponto-de-exclamacao-red.png" alt="">
+          {{erro.mensagem}}</span>
+      </ng-container>
+    </div>
+    <!-- email -->
+    <div class="input-nickname">
+      <input formControlName="email" type="text" placeholder="Email">
+      <ng-container  *ngFor="let erro of mensagens.email">
+        <span class="msg-erro validacao" *ngIf="cadastroForm.get('email')?.hasError(erro.tipo) && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)">
+          <img src="assets/icons/ponto-de-exclamacao-red.png" alt="">
+          {{erro.mensagem}}</span>
+      </ng-container>
+    </div>
+    <!-- nickname -->
+    <div class="input-nickname">
+      <input formControlName="nickname" (keyup)="validacaoNickname()" [(ngModel)]="nickname" name="nickname" type="text" placeholder="Nome de usuário">
+      <div class="validation" *ngIf="resultValid && (cadastroForm.get('nickname')?.dirty || cadastroForm.get('nickname')?.touched); then thenBlock else elseBlock"></div>
+      <ng-template  #thenBlock><app-validacao-nickname-disponivel></app-validacao-nickname-disponivel></ng-template>
+      <ng-template  #elseBlock><app-validacao-nickname-indisponivel></app-validacao-nickname-indisponivel></ng-template>
+    </div>
+
+    <div class="input-nickname">
+      <input formControlName="senha" type="password" placeholder="Senha" required>
+      <ng-container *ngFor="let erro of mensagens.senha">
+        <span class="msg-erro validacao" *ngIf="cadastroForm.get('senha')?.hasError(erro.tipo) && (cadastroForm.get('senha')?.dirty || cadastroForm.get('senha')?.touched)">
+          <img src="assets/icons/ponto-de-exclamacao-red.png" alt="">
+          {{erro.mensagem}}</span>
+      </ng-container>
+    </div>
+    <div class="input-nickname">
+      <input formControlName="confirmarSenha" type="password" placeholder="Digite novamente a senha" required>
+      <ng-container *ngFor="let erro of mensagens.confirmarSenha">
+        <span class="msg-erro validacao" *ngIf="cadastroForm.get('confirmarSenha')?.hasError(erro.tipo) && (cadastroForm.get('confirmarSenha')?.dirty || cadastroForm.get('confirmarSenha')?.touched)">
+          <img src="assets/icons/ponto-de-exclamacao-red.png" alt="">
+          {{erro.mensagem}}</span>
+      </ng-container>
+    </div>
     <div class="submit">
 
-      <button>
+      <button (click)="cadastrarUsuario()">
         Cadastrar
       </button>
 
